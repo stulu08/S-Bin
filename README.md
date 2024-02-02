@@ -131,15 +131,15 @@ int main() {
 
 ## Config
 ```c++
-// disbale saveing and loading implementation for std::vector<T>
-//#define SBIN_NO_VECTOR
+// disbale saving and loading implementation for std::vector<T>
+#define SBIN_NO_VECTOR // -> default commented
 
-// disbale saveing and loading implementation for std::array<T,L>
-//#define SBIN_NO_ARRAY
+// disbale saving and loading implementation for std::array<T,L>
+#define SBIN_NO_ARRAY // -> default commented
 
 // save size_t as a uint32_t for vector's and string's
-//#define SBIN_SHORTER_VECTOR_N_STRING_LENGTH
-´´´ 
+#define SBIN_SHORTER_VECTOR_N_STRING_LENGTH // -> default commented
+```
 
 
 #### Copyright © 2022 Julian Bents
