@@ -142,4 +142,4 @@ int main() {
 ```
 
 
-#### Copyright © 2022 Julian Bents
+#### Copyright © 2024 Julian Bents
