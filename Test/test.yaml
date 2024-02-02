@@ -1,0 +1,18 @@
+Data:
+  str: Test
+  list:
+    - abc
+    - def
+    - ghi
+    - jkl
+    - mno
+    - pqr
+    - stu
+    - vwx
+    - yz
+  arr:
+    - 5
+    - 9
+  _float: 123.0
+  _int: 764
+  _bool: true
