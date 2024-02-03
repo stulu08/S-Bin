@@ -8,6 +8,7 @@
 #include "Streams/Vector.h"
 #include "Streams/Array.h"
 #include "Streams/Map.h"
+#include "Streams/CString.h"
 
 
 namespace SBin {
@@ -31,11 +32,13 @@ namespace SBin {
 
 		virtual Path GetPath() const = 0;
 		virtual Ref<Stream> GetStream() const = 0;
+
+		inline static Ref<File> CreateBinary(const Path& file);
 	};
 	
 	class SBIN_API BinaryFile : public File {
 	public:
-		BinaryFile(Path file);
+		BinaryFile(const Path& file);
 
 		virtual ~BinaryFile();
 
@@ -48,4 +51,8 @@ namespace SBin {
 		Path m_file;
 		Ref<Stream> m_stream;
 	};
+
+	inline Ref<File> File::CreateBinary(const Path& file) {
+		return CreateRef<BinaryFile>(file);
+	}
 }

@@ -14,9 +14,9 @@ Simple binary saving and loading
 int main() {
 	using namespace SBin;
 	
-	Ref<File> file = CreateRef<BinaryFile>("test.bin");
+	auto file = File::CreateBinary("test.bin");
 
-	Ref<Stream> writeStream = file->OpenWrite();
+	auto writeStream = file->OpenWrite();
 	std::vector<std::string> data = { "Test","Test2" };
 	writeStream << data << 123 << 4385.0f << true;
 
@@ -32,14 +32,14 @@ int main() {
 int main() {
 	using namespace SBin;
 	
-	Ref<File> file = CreateRef<BinaryFile>("test.bin");
+	auto file = CreateRef<BinaryFile>("test.bin");
 
 	std::vector<std::string> vectorData;
 	int intData;
 	float floatData;
 	bool boolData;
 	
-	Ref<Stream> readStream = file->OpenRead();
+	auto readStream = file->OpenRead();
 	readStream >> vectorData >> intData >> floatData >> boolData;
 
 	return 0;
@@ -108,12 +108,12 @@ void Save(const Ref<File>& file) {
 	data._int = 764;
 	data._bool = true;
 
-	Ref<Stream> writeStream = file->OpenWrite();
+	auto writeStream = file->OpenWrite();
 	writeStream << data;
 }
 
 TestData Load(const Ref<File>& file) {
-	Ref<Stream> readStream = file->OpenRead();
+	auto readStream = file->OpenRead();
 	TestData data;
 	readStream >> data;
 	return data;

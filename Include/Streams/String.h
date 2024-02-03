@@ -33,7 +33,7 @@ namespace SBin {
 		size_t len;
 		stream >> len;
 #endif
-		value.reserve(len);
+		value.resize(len);
 		stream->ReadBytes(&value[0], len * sizeof(char));
 		return stream;
 	}
@@ -45,7 +45,7 @@ namespace SBin {
 		size_t len;
 		stream >> len;
 #endif
-		value.reserve(len);
+		value.resize(len);
 		stream->ReadBytes(&value[0], len * sizeof(wchar_t));
 		return stream;
 	}

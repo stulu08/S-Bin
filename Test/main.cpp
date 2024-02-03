@@ -12,13 +12,14 @@ struct TestData {
 	float _float;
 	uint32_t _int;
 	bool _bool;
+	char _cstr[10];
 };
 inline Ref<Stream>& operator<<(Ref<Stream>& stream, const TestData& data) {
-	stream << data.str << data.list << data.arr << data._float << data._int << data._bool;
+	stream << data.str << data.list << data.arr << data._float << data._int << data._bool << data._cstr;
 	return stream;
 }
 inline Ref<Stream>& operator>>(Ref<Stream>& stream, TestData& data) {
-	stream >> data.str >> data.list >> data.arr >> data._float >> data._int >> data._bool;
+	stream >> data.str >> data.list >> data.arr >> data._float >> data._int >> data._bool >> data._cstr;
 	return stream;
 }
 
@@ -32,22 +33,23 @@ void Save(const Ref<File>& file) {
 	data._float = 123;
 	data._int = 764;
 	data._bool = true;
+	strcpy(data._cstr, "abcdefghi");
+	data._cstr[9] = '\0';
 
-	Ref<Stream> writeStream = file->OpenWrite();
+	auto writeStream = file->OpenWrite();
 	writeStream << data;
 }
 
 TestData Load(const Ref<File>& file) {
-	Ref<Stream> readStream = file->OpenRead();
+	auto readStream = file->OpenRead();
 	TestData data;
 	readStream >> data;
 	return data;
 }
 
 int main() {
-	Ref<File> file = CreateRef<BinaryFile>("test.bin");
+	auto file = File::CreateBinary("test.bin");
 	
-	// with 32 bit sizes 91 bytes with 64 bit 135, while yaml takes up around 190 bytes in comparison
 	Save(file);
 	TestData data = Load(file);
 

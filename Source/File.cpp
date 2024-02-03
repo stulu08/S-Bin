@@ -2,7 +2,7 @@
 #include "File.h"
 
 namespace SBin {
-    BinaryFile::BinaryFile(Path file)
+    BinaryFile::BinaryFile(const Path& file)
         : m_file(file), m_stream(nullptr) {
         m_stream = CreateRef<Stream>();
     }
